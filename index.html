@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VELTRIX OS | Free Google Business Profile audit</title>
+<meta name="description" content="Request a free audit of your Google Business Profile.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20120%20120%22%3E%3Crect%20width%3D%22120%22%20height%3D%22120%22%20rx%3D%2228%22%20fill%3D%22%230A1A33%22/%3E%3Cpath%20d%3D%22M32%2040%20L54%2082%22%20stroke%3D%22%23F7F4EC%22%20stroke-width%3D%2212%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22/%3E%3Cpath%20d%3D%22M54%2082%20L90%2030%22%20stroke%3D%22%23D6A936%22%20stroke-width%3D%2212%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22/%3E%3C/svg%3E">
+<!-- Cole aqui o Meta Pixel e a tag do Google Ads / GA4 (a LP já dispara "Lead" no envio, se eles existirem) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1A33;--navy2:#12305C;--gold:#D6A936;--ivory:#F7F4EC;--slate:#4A5468;--mist:#C9D0DE;--rule:#D9D3C2;--err:#B42318}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:var(--navy);background:var(--ivory);line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:'Sora',system-ui,sans-serif;margin:0;line-height:1.12;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--navy2);outline-offset:3px}
+.dark :focus-visible{outline-color:var(--gold)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.dark{background:var(--navy);color:var(--ivory)}
+
+/* header */
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0}
+.logo{height:38px;width:auto;display:block}
+.lang{display:flex;gap:4px}
+.lang button{min-height:44px;min-width:44px;padding:0 10px;background:none;border:0;border-bottom:2px solid transparent;color:var(--mist);font:600 .9rem 'Inter',sans-serif;cursor:pointer}
+.lang button[aria-pressed="true"]{color:var(--ivory);border-bottom-color:var(--gold)}
+
+/* hero */
+.hero{padding:48px 0 96px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:64px;align-items:center}
+.hero h1{font-weight:800;font-size:clamp(2.1rem,4.7vw,3.7rem);letter-spacing:-.01em;color:var(--ivory)}
+.sub{font-size:1.15rem;color:#D3D9E6;max-width:54ch;margin:24px 0 32px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;border-radius:12px;background:var(--gold);color:var(--navy);font:600 1rem 'Sora',sans-serif;text-decoration:none;border:0;cursor:pointer}
+.btn:hover{background:#E4BB4D}
+.btn[disabled]{opacity:.65;cursor:progress}
+.trust{margin-top:16px;font-size:.92rem;color:#B5BED0}
+.panel{background:var(--navy2);border-radius:20px;padding:32px}
+.panel h2{font-weight:600;font-size:1.05rem;color:var(--ivory);margin-bottom:12px}
+.panel ul{list-style:none;margin:0;padding:0}
+.panel li{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-top:1px solid rgba(247,244,236,.18);color:var(--ivory)}
+.panel li:first-child{border-top:0}
+.tick{flex:none;margin-top:2px}
+.tick path{fill:none;stroke:var(--gold);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:30;stroke-dashoffset:30;animation:draw .5s ease forwards;animation-delay:calc(var(--i) * .3s + .4s)}
+@keyframes draw{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.tick path{animation:none;stroke-dashoffset:0}html{scroll-behavior:auto}}
+
+/* found / chosen / booked */
+.fcb{padding:88px 0}
+.fcb-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px}
+.fcb-item{border-top:2px solid var(--navy);padding-top:20px}
+.fcb-item h3{font-weight:800;font-size:2rem;margin-bottom:12px}
+.fcb-item p{color:var(--slate);max-width:34ch}
+
+/* steps */
+.steps{padding:0 0 96px}
+.steps h2{font-weight:800;font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:40px}
+.steps ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px}
+.step-n{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--navy);color:var(--ivory);font:600 1rem 'Sora',sans-serif;margin-bottom:16px}
+.steps h3{font-weight:600;font-size:1.15rem;margin-bottom:8px}
+.steps p{color:var(--slate);max-width:36ch}
+
+/* form */
+.request{padding:88px 0}
+.request-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:64px;align-items:start}
+.request h2{font-weight:800;font-size:clamp(1.8rem,3.4vw,2.6rem);color:var(--ivory)}
+.request .lead{margin:16px 0 32px;color:#D3D9E6;font-size:1.1rem;max-width:40ch}
+.who{color:var(--ivory);font-weight:500;border-top:1px solid rgba(247,244,236,.22);padding-top:20px;max-width:40ch}
+.card{background:#fff;color:var(--navy);border-radius:20px;padding:32px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 16px}
+.full{grid-column:1 / -1}
+label,.lbl{display:block;font-weight:600;font-size:.92rem;margin-bottom:6px}
+input[type=text],input[type=email],input[type=tel],input[type=url],input[type=datetime-local],select{width:100%;min-height:48px;padding:10px 14px;border:1.5px solid #7A8396;border-radius:10px;font:400 1rem 'Inter',sans-serif;background:#fff;color:var(--navy)}
+input:focus,select:focus{outline:3px solid var(--navy2);outline-offset:1px;border-color:var(--navy2)}
+[aria-invalid="true"]{border-color:var(--err)!important}
+.help{font-size:.85rem;color:var(--slate);margin-top:6px}
+.err{font-size:.85rem;color:var(--err);margin-top:6px}
+.err:empty{display:none}
+.consent{display:flex;gap:12px;align-items:flex-start}
+.consent input{width:22px;height:22px;margin:2px 0 0;flex:none;accent-color:var(--navy2)}
+.consent label{margin:0;font-weight:500}
+.fine{font-size:.85rem;color:var(--slate)}
+.card .btn{width:100%}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.status{margin-top:12px;font-weight:600}
+.status.bad{color:var(--err)}
+.done h3{font-weight:800;font-size:1.6rem;margin-bottom:12px}
+.done p{color:var(--slate)}
+
+/* faq */
+.faq{padding:88px 0}
+.faq h2{font-weight:800;font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:24px}
+details{border-top:1px solid var(--rule);padding:4px 0}
+details:last-of-type{border-bottom:1px solid var(--rule)}
+summary{cursor:pointer;min-height:48px;display:flex;align-items:center;font-weight:600;font-family:'Sora',sans-serif;font-size:1.02rem}
+details p{color:var(--slate);padding:0 0 16px;max-width:64ch}
+
+/* footer + sticky */
+footer{padding:32px 0 40px;font-size:.85rem;color:#B5BED0}
+.sticky{position:fixed;left:16px;right:16px;bottom:16px;z-index:20;display:none}
+.sticky .btn{width:100%;box-shadow:0 6px 24px rgba(10,26,51,.35)}
+.sticky.off{display:none!important}
+
+@media (max-width:860px){
+  .hero{padding:24px 0 64px}
+  .hero-grid,.request-grid{grid-template-columns:1fr;gap:40px}
+  .fcb-grid,.steps ol{grid-template-columns:1fr;gap:32px}
+  .fcb,.faq,.request{padding:64px 0}
+  .steps{padding-bottom:64px}
+  .grid{grid-template-columns:1fr}
+  .card{padding:24px}
+  .sticky{display:block}
+  footer{padding-bottom:96px}
+}
+</style>
+</head>
+<body>
+
+<header class="dark">
+  <div class="wrap bar">
+    <svg class="logo" role="img" aria-label="VELTRIX OS" xmlns="http://www.w3.org/2000/svg" viewBox="-24 -24 706.9780000000001 180"><rect x="0" y="0" width="132" height="132" rx="30.800000000000004" fill="#12305C"/><path d="M35.2 44.0 L59.400000000000006 90.2" stroke="#F7F4EC" stroke-width="13.200000000000001" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M59.400000000000006 90.2 L99.00000000000001 33.0" stroke="#D6A936" stroke-width="13.200000000000001" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M181.632 93.74 165.52 38.26H180.112L192.196 83.78399999999999L189.536 82.49199999999999H196.832L194.096 83.78399999999999L205.344 38.26H219.48L204.43200000000002 93.74Z M235.744 93.74V38.26H249.424V93.74ZM247.904 93.74V82.18799999999999H271.312V93.74ZM247.904 71.32V59.767999999999994H269.716V71.32ZM247.904 49.812V38.26H270.856V49.812Z M289.856 93.74V38.26H303.99199999999996V93.74ZM302.472 93.74V81.428H324.96799999999996V93.74Z M352.784 93.74V49.05199999999999H366.91999999999996V93.74ZM337.58399999999995 50.571999999999996V38.26H382.11999999999995V50.571999999999996Z M398.384 93.74V37.803999999999995H412.52V93.74ZM431.824 93.74 416.24399999999997 70.17999999999999H431.596L448.08799999999997 93.74ZM408.948 76.716V65.848H422.248Q424.756 65.848 426.58 64.86Q428.404 63.872 429.43 62.048Q430.456 60.224 430.456 57.791999999999994Q430.456 55.284 429.43 53.459999999999994Q428.404 51.635999999999996 426.58 50.647999999999996Q424.756 49.66 422.248 49.66H408.948V37.803999999999995H421.412Q428.632 37.803999999999995 433.876 39.97Q439.12 42.135999999999996 441.932 46.354Q444.74399999999997 50.571999999999996 444.74399999999997 56.803999999999995V58.019999999999996Q444.74399999999997 64.252 441.894 68.394Q439.044 72.536 433.83799999999997 74.626Q428.632 76.716 421.412 76.716Z M463.896 93.74V38.26H478.032V93.74Z M493.384 93.74 511.776 64.252 511.928 65.46799999999999 494.904 38.26H510.408L519.908 54.296H521.884L531.08 38.26H546.128L529.18 65.61999999999999L528.952 64.404L547.952 93.74H532.448L521.124 75.42399999999999H519.148L508.432 93.74Z" fill="#F7F4EC"/><rect x="573.408" y="40.0" width="84.57000000000002" height="52" rx="27.0" fill="none" stroke="#D6A936" stroke-width="2.5"/><path d="M604.398 77.52Q601.428 77.52 599.2529999999999 76.47Q597.078 75.42 595.653 73.725Q594.2280000000001 72.03 593.523 70.065Q592.818 68.10000000000001 592.818 66.27000000000001V65.61Q592.818 63.6 593.538 61.605000000000004Q594.258 59.61 595.713 57.99Q597.168 56.370000000000005 599.328 55.395Q601.488 54.42 604.398 54.42Q607.278 54.42 609.438 55.395Q611.598 56.370000000000005 613.053 57.99Q614.508 59.61 615.2280000000001 61.605000000000004Q615.948 63.6 615.948 65.61V66.27000000000001Q615.948 68.10000000000001 615.2429999999999 70.065Q614.538 72.03 613.113 73.725Q611.688 75.42 609.5129999999999 76.47Q607.338 77.52 604.398 77.52ZM604.398 73.56Q606.078 73.56 607.413 72.96000000000001Q608.748 72.36 609.693 71.295Q610.638 70.23 611.133 68.86500000000001Q611.628 67.5 611.628 65.97Q611.628 64.32000000000001 611.133 62.940000000000005Q610.638 61.56 609.693 60.540000000000006Q608.748 59.52 607.398 58.95Q606.048 58.38 604.398 58.38Q602.718 58.38 601.3679999999999 58.95Q600.018 59.52 599.0730000000001 60.540000000000006Q598.128 61.56 597.633 62.940000000000005Q597.138 64.32000000000001 597.138 65.97Q597.138 67.5 597.633 68.86500000000001Q598.128 70.23 599.0730000000001 71.295Q600.018 72.36 601.3679999999999 72.96000000000001Q602.718 73.56 604.398 73.56Z M629.928 77.52Q627.018 77.52 625.023 76.59Q623.028 75.66 621.9780000000001 74.025Q620.928 72.39 620.928 70.32000000000001H625.0980000000001Q625.0980000000001 71.19 625.578 72.015Q626.058 72.84 627.123 73.35Q628.188 73.86 629.928 73.86Q631.488 73.86 632.538 73.41Q633.5880000000001 72.96000000000001 634.0980000000001 72.22500000000001Q634.6080000000001 71.49000000000001 634.6080000000001 70.56Q634.6080000000001 69.39 633.618 68.685Q632.628 67.98 630.558 67.8L628.638 67.65Q625.488 67.38 623.613 65.685Q621.738 63.99 621.738 61.2Q621.738 59.10000000000001 622.7280000000001 57.58500000000001Q623.7180000000001 56.07000000000001 625.503 55.245000000000005Q627.288 54.42 629.688 54.42Q632.178 54.42 633.9780000000001 55.290000000000006Q635.778 56.160000000000004 636.768 57.735Q637.758 59.31 637.758 61.440000000000005H633.5880000000001Q633.5880000000001 60.540000000000006 633.153 59.775000000000006Q632.7180000000001 59.010000000000005 631.863 58.545Q631.008 58.08 629.688 58.08Q628.428 58.08 627.588 58.5Q626.748 58.92 626.328 59.64Q625.908 60.36 625.908 61.2Q625.908 62.220000000000006 626.658 62.985Q627.408 63.75 629.028 63.870000000000005L630.9480000000001 64.05Q633.288 64.23 635.058 65.04Q636.8280000000001 65.85000000000001 637.8030000000001 67.23Q638.778 68.61 638.778 70.56Q638.778 72.63 637.6980000000001 74.205Q636.618 75.78 634.623 76.65Q632.628 77.52 629.928 77.52Z" fill="#D6A936"/></svg>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="pt" aria-pressed="false">PT</button>
+      <button type="button" data-lang="es" aria-pressed="false">ES</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="dark hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1 id="h1"></h1>
+      <p class="sub" id="sub"></p>
+      <a class="btn" id="cta" href="#request"></a>
+      <p class="trust" id="trust"></p>
+    </div>
+    <aside class="panel">
+      <h2 id="panel_title"></h2>
+      <ul id="panel_list"></ul>
+    </aside>
+  </div>
+</section>
+
+<section class="fcb">
+  <div class="wrap fcb-grid" id="fcb_list"></div>
+</section>
+
+<section class="steps">
+  <div class="wrap">
+    <h2 id="steps_title"></h2>
+    <ol id="steps_list"></ol>
+  </div>
+</section>
+
+<!-- Espaço reservado para prova social (depoimentos autorizados dos clientes). Adicione aqui quando tiver. -->
+
+<section class="dark request" id="request">
+  <div class="wrap request-grid">
+    <div>
+      <h2 id="form_title"></h2>
+      <p class="lead" id="form_sub"></p>
+      <p class="who" id="who"></p>
+    </div>
+    <div class="card">
+      <form id="leadForm" novalidate>
+        <div class="grid">
+          <div><label for="name" data-f="name"></label><input type="text" id="name" name="name" autocomplete="name" maxlength="80" aria-describedby="e_name"><div class="err" id="e_name" aria-live="polite"></div></div>
+          <div><label for="email" data-f="email"></label><input type="email" id="email" name="email" autocomplete="email" maxlength="120" aria-describedby="e_email"><div class="err" id="e_email" aria-live="polite"></div></div>
+          <div><label for="phone" data-f="phone"></label><input type="tel" id="phone" name="phone" autocomplete="tel" maxlength="40" aria-describedby="e_phone"><div class="err" id="e_phone" aria-live="polite"></div></div>
+          <div><label for="contact_pref" data-f="contact_pref"></label><select id="contact_pref" name="contact_pref" data-opts="contact_pref"></select></div>
+          <div><label for="business" data-f="business"></label><input type="text" id="business" name="business" autocomplete="organization" maxlength="120" aria-describedby="e_business"><div class="err" id="e_business" aria-live="polite"></div></div>
+          <div><label for="niche" data-f="niche"></label><select id="niche" name="niche" data-opts="niche" aria-describedby="e_niche"></select><div class="err" id="e_niche" aria-live="polite"></div></div>
+          <div class="full"><label for="location" data-f="location"></label><input type="text" id="location" name="location" maxlength="120" aria-describedby="e_location"><div class="err" id="e_location" aria-live="polite"></div></div>
+          <div class="full"><label for="gbp" data-f="gbp"></label><input type="text" id="gbp" name="gbp" maxlength="300" aria-describedby="h_gbp e_gbp"><div class="help" id="h_gbp" data-f="gbp_help"></div><div class="err" id="e_gbp" aria-live="polite"></div></div>
+          <div class="full"><label for="gbp_status" data-f="gbp_status"></label><select id="gbp_status" name="gbp_status" data-opts="gbp_status" aria-describedby="e_gbp_status"></select><div class="err" id="e_gbp_status" aria-live="polite"></div></div>
+          <div class="full"><label for="challenge" data-f="challenge"></label><select id="challenge" name="challenge" data-opts="challenge" aria-describedby="e_challenge"></select><div class="err" id="e_challenge" aria-live="polite"></div></div>
+          <div class="full"><label for="timing" data-f="timing"></label><select id="timing" name="timing" data-opts="timing" aria-describedby="e_timing"></select><div class="err" id="e_timing" aria-live="polite"></div></div>
+          <div class="full"><label for="meeting_local" data-f="meeting"></label><input type="datetime-local" id="meeting_local" name="meeting_local" aria-describedby="h_meeting"><div class="help" id="h_meeting" data-f="meeting_help"></div></div>
+          <div class="full consent"><input type="checkbox" id="consent" name="consent" aria-describedby="e_consent"><div><label for="consent" data-f="consent"></label><div class="fine" id="consent_note"></div><div class="err" id="e_consent" aria-live="polite"></div></div></div>
+          <div class="hp" aria-hidden="true"><label for="website">Website</label><input type="text" id="website" name="website" tabindex="-1" autocomplete="off"></div>
+          <div class="full"><button class="btn" type="submit" id="submitBtn"></button><div class="status" id="status" role="status" aria-live="polite"></div></div>
+        </div>
+      </form>
+      <div class="done" id="done" hidden tabindex="-1">
+        <h3 id="done_title"></h3>
+        <p id="done_text"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap">
+    <h2 id="faq_title"></h2>
+    <div id="faq_list"></div>
+  </div>
+</section>
+</main>
+
+<footer class="dark">
+  <div class="wrap" id="footer_text"></div>
+</footer>
+
+<div class="sticky" id="sticky"><a class="btn" id="sticky_cta" href="#request"></a></div>
+<noscript><p style="padding:16px;text-align:center">Enable JavaScript to use this page.</p></noscript>
+
+<script>
+/* ================= CONFIGURAÇÃO ================= */
+// Cole aqui a URL do Web App (termina em /exec) depois de publicar o Apps Script.
+var ENDPOINT = 'https://script.google.com/macros/s/AKfycbw8rh6IM-Tuo6ge_sM_02ePYLGxbdEtgHTjIjsB4IMegX5UvALEgrGlwQrjXCiJ29kY/exec';
+// Aparece se o envio falhar (rede, bloqueio). Troque por um contato seu.
+var FALLBACK_EMAIL = 'jhonantankened@gmail.com';
+/* ================================================= */
+
+var I18N = {
+  en: {
+    title: 'VELTRIX OS | Free Google Business Profile audit',
+    desc: 'Request a free audit of your Google Business Profile. We review it and show you what to fix first.',
+    h1: 'Your Google Business Profile should be your best salesperson.',
+    sub: 'For local businesses and professionals with a Google Business Profile. Request a free audit: we review your profile, find what is costing you customers, and walk you through the fixes in a short call.',
+    cta: 'Get my free profile audit',
+    trust: 'Based on your public profile. No access needed.',
+    panel_title: 'What the audit covers',
+    panel: ['Business information and categories','Services and products listed','Photos and visual presence','Reviews and how they are answered','Posts and recent activity','How you compare with nearby competitors'],
+    fcb: [['Found.','Be easy to find when someone searches for what you do.'],['Chosen.','Photos, reviews and replies decide who gets the call.'],['Booked.','A clear way to contact you turns a visit into a customer.']],
+    steps_title: 'How it works',
+    steps: [['Send your details','Fill in the short form below with your business and your profile link.'],['We audit your profile','Before the call, we review your public profile and map what to fix first.'],['Short call with the findings','We show you what is holding the profile back. You decide if it makes sense to go further.']],
+    form_title: 'Request your profile audit',
+    form_sub: 'It takes about two minutes.',
+    who: 'You will talk directly with Jhonantan Leite, founder of VELTRIX OS.',
+    f: { name:'Your name', email:'Email', phone:'Phone (with country code)', contact_pref:'Best way to reach you', business:'Business name', niche:'Type of business', location:'City and country', gbp:'Google Maps link or business name', gbp_help:'Search your business on Google Maps and paste the link, or type the name exactly as it appears there.', gbp_status:'Your Google profile today', challenge:'Biggest challenge right now', timing:'When do you want to start?', meeting:'Preferred day and time for the call (optional)', meeting_help:'Shown in your local time.', consent:'I agree to be contacted about my audit.' },
+    ph: { phone:'+1 555 000 0000', location:'e.g. Austin, USA', gbp:'https://maps.app.goo.gl/...' },
+    consent_note: 'We use your information only to prepare your audit and contact you.',
+    select: 'Select...',
+    opts: {
+      contact_pref: [['call','Phone call'],['text','Text message'],['whatsapp','WhatsApp'],['email','Email']],
+      niche: [['restaurant_cafe','Restaurant or café'],['beauty','Barbershop, salon or beauty'],['health','Health, wellness or clinic'],['auto','Auto services'],['home','Home services'],['professional','Professional services (law, accounting, real estate...)'],['retail','Retail store'],['fitness','Fitness or studio'],['other','Other']],
+      gbp_status: [['manage','I have a profile and I manage it'],['other_manages','I have a profile, but someone else manages it'],['no_access','I have a profile, but I cannot access it'],['unsure','I am not sure I have one'],['none','I do not have a profile yet']],
+      challenge: [['few_contacts','Few calls, visits or direction requests'],['few_reviews','Few reviews'],['competitors','Competitors show up above me'],['neglected','Profile outdated or neglected'],['dont_know','I do not know where to start']],
+      timing: [['asap','As soon as possible'],['month','Within 30 days'],['researching','Just researching']]
+    },
+    submit: 'Send my request', sending: 'Sending...',
+    e_req: 'Required.', e_email: 'Enter a valid email.', e_phone: 'Enter a valid phone number with country code.', e_consent: 'Confirm to continue.',
+    done_title: 'Request received.', done_text: 'We will review your profile and contact you to confirm the call.',
+    fail: 'The request did not go through. Check your connection and try again, or write to ',
+    faq_title: 'Common questions',
+    faq: [['Do I need to give you access to my profile?','No. The audit is based on your public profile. Access is only discussed if we work together.'],['What do I need to send?','Your business name or Google Maps link, and a way to contact you.'],['What happens after I send the form?','We review your profile, then contact you by your preferred method to confirm the call.'],['Is this only for businesses that already have a profile?','It is built for them. If you do not have one yet, say so in the form and we will tell you how we can help.']],
+    footer: '© VELTRIX OS. Google and Google Maps are trademarks of Google LLC. VELTRIX OS is not affiliated with or endorsed by Google.'
+  },
+  pt: {
+    title: 'VELTRIX OS | Diagnóstico gratuito do Perfil da Empresa no Google',
+    desc: 'Peça um diagnóstico gratuito do seu Perfil da Empresa no Google. Mostramos o que corrigir primeiro.',
+    h1: 'O seu Perfil da Empresa no Google deveria ser o seu melhor vendedor.',
+    sub: 'Para negócios locais e profissionais liberais com Perfil da Empresa no Google. Peça um diagnóstico gratuito: analisamos o seu perfil, encontramos o que está custando clientes e mostramos as correções em uma conversa rápida.',
+    cta: 'Quero meu diagnóstico grátis',
+    trust: 'Feito com base no seu perfil público. Sem precisar de acesso.',
+    panel_title: 'O que o diagnóstico analisa',
+    panel: ['Informações do negócio e categorias','Serviços e produtos cadastrados','Fotos e presença visual','Avaliações e como são respondidas','Publicações e atividade recente','Como você está frente aos concorrentes próximos'],
+    fcb: [['Encontrado.','Seja fácil de achar quando alguém buscar o que você faz.'],['Escolhido.','Fotos, avaliações e respostas decidem quem recebe a ligação.'],['Agendado.','Um caminho claro de contato transforma a visita em cliente.']],
+    steps_title: 'Como funciona',
+    steps: [['Envie seus dados','Preencha o formulário rápido abaixo com o seu negócio e o link do perfil.'],['Analisamos o seu perfil','Antes da conversa, revisamos o seu perfil público e mapeamos o que corrigir primeiro.'],['Conversa rápida com os resultados','Mostramos o que está travando o perfil. Você decide se faz sentido avançar.']],
+    form_title: 'Peça o diagnóstico do seu perfil',
+    form_sub: 'Leva cerca de dois minutos.',
+    who: 'Você vai conversar diretamente com Jhonantan Leite, fundador da VELTRIX OS.',
+    f: { name:'Seu nome', email:'E-mail', phone:'Telefone (com código do país)', contact_pref:'Melhor forma de contato', business:'Nome do negócio', niche:'Tipo de negócio', location:'Cidade e país', gbp:'Link do Google Maps ou nome do negócio', gbp_help:'Busque o seu negócio no Google Maps e cole o link, ou digite o nome exatamente como aparece lá.', gbp_status:'Seu perfil no Google hoje', challenge:'Maior desafio agora', timing:'Quando quer começar?', meeting:'Melhor dia e horário para a conversa (opcional)', meeting_help:'Exibido no seu fuso horário.', consent:'Concordo em ser contatado sobre o meu diagnóstico.' },
+    ph: { phone:'+55 31 90000 0000', location:'ex.: Belo Horizonte, Brasil', gbp:'https://maps.app.goo.gl/...' },
+    consent_note: 'Usamos suas informações apenas para preparar o diagnóstico e entrar em contato.',
+    select: 'Selecione...',
+    opts: {
+      contact_pref: [['call','Ligação'],['text','Mensagem de texto (SMS)'],['whatsapp','WhatsApp'],['email','E-mail']],
+      niche: [['restaurant_cafe','Restaurante ou café'],['beauty','Barbearia, salão ou beleza'],['health','Saúde, bem-estar ou clínica'],['auto','Serviços automotivos'],['home','Serviços residenciais'],['professional','Serviços profissionais (advocacia, contabilidade, imóveis...)'],['retail','Loja de varejo'],['fitness','Academia ou estúdio'],['other','Outro']],
+      gbp_status: [['manage','Tenho perfil e eu mesmo gerencio'],['other_manages','Tenho perfil, mas outra pessoa gerencia'],['no_access','Tenho perfil, mas não tenho acesso'],['unsure','Não sei se tenho perfil'],['none','Ainda não tenho perfil']],
+      challenge: [['few_contacts','Poucas ligações, visitas ou pedidos de rota'],['few_reviews','Poucas avaliações'],['competitors','Concorrentes aparecem acima de mim'],['neglected','Perfil desatualizado ou abandonado'],['dont_know','Não sei por onde começar']],
+      timing: [['asap','O quanto antes'],['month','Em até 30 dias'],['researching','Só pesquisando']]
+    },
+    submit: 'Enviar meu pedido', sending: 'Enviando...',
+    e_req: 'Obrigatório.', e_email: 'Informe um e-mail válido.', e_phone: 'Informe um telefone válido com código do país.', e_consent: 'Confirme para continuar.',
+    done_title: 'Pedido recebido.', done_text: 'Vamos analisar o seu perfil e entrar em contato para confirmar a conversa.',
+    fail: 'O pedido não foi enviado. Verifique a conexão e tente de novo, ou escreva para ',
+    faq_title: 'Perguntas frequentes',
+    faq: [['Preciso dar acesso ao meu perfil?','Não. O diagnóstico é feito com base no seu perfil público. O acesso só entra em pauta se trabalharmos juntos.'],['O que preciso enviar?','O nome do negócio ou o link do Google Maps e uma forma de contato.'],['O que acontece depois que eu enviar?','Analisamos o seu perfil e entramos em contato pela forma que você escolheu para confirmar a conversa.'],['É só para quem já tem perfil?','É feito para quem tem. Se ainda não tem, avise no formulário e diremos como podemos ajudar.']],
+    footer: '© VELTRIX OS. Google e Google Maps são marcas da Google LLC. A VELTRIX OS não é afiliada nem endossada pelo Google.'
+  },
+  es: {
+    title: 'VELTRIX OS | Auditoría gratuita del Perfil de Empresa en Google',
+    desc: 'Pide una auditoría gratuita de tu Perfil de Empresa en Google. Te mostramos qué corregir primero.',
+    h1: 'Tu Perfil de Empresa en Google debería ser tu mejor vendedor.',
+    sub: 'Para negocios locales y profesionales con Perfil de Empresa en Google. Pide una auditoría gratuita: revisamos tu perfil, encontramos lo que te está costando clientes y te mostramos las correcciones en una llamada corta.',
+    cta: 'Quiero mi auditoría gratis',
+    trust: 'Basada en tu perfil público. No necesitamos acceso.',
+    panel_title: 'Qué revisa la auditoría',
+    panel: ['Información del negocio y categorías','Servicios y productos publicados','Fotos y presencia visual','Reseñas y cómo se responden','Publicaciones y actividad reciente','Cómo te comparas con los competidores cercanos'],
+    fcb: [['Encontrado.','Sé fácil de encontrar cuando alguien busque lo que haces.'],['Elegido.','Las fotos, las reseñas y las respuestas deciden quién recibe la llamada.'],['Agendado.','Una vía de contacto clara convierte la visita en cliente.']],
+    steps_title: 'Cómo funciona',
+    steps: [['Envía tus datos','Completa el formulario corto de abajo con tu negocio y el enlace de tu perfil.'],['Auditamos tu perfil','Antes de la llamada, revisamos tu perfil público y definimos qué corregir primero.'],['Llamada corta con los resultados','Te mostramos qué está frenando tu perfil. Tú decides si tiene sentido avanzar.']],
+    form_title: 'Pide la auditoría de tu perfil',
+    form_sub: 'Toma unos dos minutos.',
+    who: 'Hablarás directamente con Jhonantan Leite, fundador de VELTRIX OS.',
+    f: { name:'Tu nombre', email:'Correo electrónico', phone:'Teléfono (con código de país)', contact_pref:'Mejor forma de contacto', business:'Nombre del negocio', niche:'Tipo de negocio', location:'Ciudad y país', gbp:'Enlace de Google Maps o nombre del negocio', gbp_help:'Busca tu negocio en Google Maps y pega el enlace, o escribe el nombre tal como aparece allí.', gbp_status:'Tu perfil en Google hoy', challenge:'Mayor desafío ahora', timing:'¿Cuándo quieres empezar?', meeting:'Mejor día y hora para la llamada (opcional)', meeting_help:'Se muestra en tu zona horaria.', consent:'Acepto que me contacten sobre mi auditoría.' },
+    ph: { phone:'+57 300 000 0000', location:'ej.: Medellín, Colombia', gbp:'https://maps.app.goo.gl/...' },
+    consent_note: 'Usamos tu información solo para preparar la auditoría y contactarte.',
+    select: 'Selecciona...',
+    opts: {
+      contact_pref: [['call','Llamada'],['text','Mensaje de texto (SMS)'],['whatsapp','WhatsApp'],['email','Correo electrónico']],
+      niche: [['restaurant_cafe','Restaurante o cafetería'],['beauty','Barbería, salón o belleza'],['health','Salud, bienestar o clínica'],['auto','Servicios automotrices'],['home','Servicios para el hogar'],['professional','Servicios profesionales (abogacía, contabilidad, bienes raíces...)'],['retail','Tienda minorista'],['fitness','Gimnasio o estudio'],['other','Otro']],
+      gbp_status: [['manage','Tengo perfil y yo lo administro'],['other_manages','Tengo perfil, pero lo administra otra persona'],['no_access','Tengo perfil, pero no tengo acceso'],['unsure','No sé si tengo perfil'],['none','Todavía no tengo perfil']],
+      challenge: [['few_contacts','Pocas llamadas, visitas o solicitudes de ruta'],['few_reviews','Pocas reseñas'],['competitors','Los competidores aparecen por encima de mí'],['neglected','Perfil desactualizado o abandonado'],['dont_know','No sé por dónde empezar']],
+      timing: [['asap','Lo antes posible'],['month','En los próximos 30 días'],['researching','Solo investigando']]
+    },
+    submit: 'Enviar mi solicitud', sending: 'Enviando...',
+    e_req: 'Obligatorio.', e_email: 'Ingresa un correo válido.', e_phone: 'Ingresa un teléfono válido con código de país.', e_consent: 'Confirma para continuar.',
+    done_title: 'Solicitud recibida.', done_text: 'Revisaremos tu perfil y te contactaremos para confirmar la llamada.',
+    fail: 'La solicitud no se envió. Revisa tu conexión e inténtalo de nuevo, o escribe a ',
+    faq_title: 'Preguntas frecuentes',
+    faq: [['¿Tengo que darles acceso a mi perfil?','No. La auditoría se hace con tu perfil público. El acceso solo se habla si trabajamos juntos.'],['¿Qué necesito enviar?','El nombre del negocio o el enlace de Google Maps y una forma de contacto.'],['¿Qué pasa después de enviar el formulario?','Revisamos tu perfil y te contactamos por el medio que elegiste para confirmar la llamada.'],['¿Es solo para negocios que ya tienen perfil?','Está hecho para ellos. Si todavía no tienes uno, indícalo en el formulario y te diremos cómo podemos ayudar.']],
+    footer: '© VELTRIX OS. Google y Google Maps son marcas de Google LLC. VELTRIX OS no está afiliada ni respaldada por Google.'
+  }
+};
+
+var REQUIRED = ['name','email','phone','business','niche','location','gbp','gbp_status','challenge','timing'];
+var lang = 'en';
+
+function $(id){ return document.getElementById(id); }
+function el(tag, cls, text){ var n = document.createElement(tag); if (cls) n.className = cls; if (text) n.textContent = text; return n; }
+
+function pickLang(){
+  var q = new URLSearchParams(location.search).get('lang');
+  if (q && I18N[q]) return q;
+  var nav = (navigator.language || 'en').slice(0,2).toLowerCase();
+  return I18N[nav] ? nav : 'en';
+}
+
+function tickSvg(i){
+  var ns = 'http://www.w3.org/2000/svg';
+  var s = document.createElementNS(ns,'svg');
+  s.setAttribute('class','tick'); s.setAttribute('viewBox','0 0 24 24'); s.setAttribute('width','22'); s.setAttribute('height','22'); s.setAttribute('aria-hidden','true');
+  s.style.setProperty('--i', i);
+  var p = document.createElementNS(ns,'path');
+  p.setAttribute('pathLength','30'); p.setAttribute('d','M4.5 11 L9.5 18 L19.5 5.5');
+  s.appendChild(p); return s;
+}
+
+function applyLang(l){
+  lang = l; var t = I18N[l];
+  document.documentElement.lang = l;
+  document.title = t.title;
+  document.querySelector('meta[name="description"]').setAttribute('content', t.desc);
+  ['h1','sub','cta','trust','panel_title','steps_title','form_title','form_sub','who','consent_note','faq_title'].forEach(function(k){ $(k).textContent = t[k]; });
+  $('sticky_cta').textContent = t.cta;
+  $('submitBtn').textContent = t.submit;
+  $('done_title').textContent = t.done_title; $('done_text').textContent = t.done_text;
+  $('footer_text').textContent = t.footer;
+
+  var pl = $('panel_list'); pl.textContent = '';
+  t.panel.forEach(function(txt,i){ var li = el('li'); li.appendChild(tickSvg(i)); li.appendChild(el('span','',txt)); pl.appendChild(li); });
+
+  var fl = $('fcb_list'); fl.textContent = '';
+  t.fcb.forEach(function(x){ var d = el('div','fcb-item'); d.appendChild(el('h3','',x[0])); d.appendChild(el('p','',x[1])); fl.appendChild(d); });
+
+  var sl = $('steps_list'); sl.textContent = '';
+  t.steps.forEach(function(x,i){ var li = el('li'); li.appendChild(el('div','step-n',String(i+1))); li.appendChild(el('h3','',x[0])); li.appendChild(el('p','',x[1])); sl.appendChild(li); });
+
+  var fq = $('faq_list'); fq.textContent = '';
+  t.faq.forEach(function(x){ var d = el('details'); d.appendChild(el('summary','',x[0])); d.appendChild(el('p','',x[1])); fq.appendChild(d); });
+
+  document.querySelectorAll('[data-f]').forEach(function(n){ n.textContent = t.f[n.getAttribute('data-f')]; });
+  Object.keys(t.ph).forEach(function(k){ $(k).placeholder = t.ph[k]; });
+
+  document.querySelectorAll('select[data-opts]').forEach(function(sel){
+    var keep = sel.value; sel.textContent = '';
+    var group = sel.getAttribute('data-opts');
+    if (group !== 'contact_pref') { var o0 = el('option','',t.select); o0.value = ''; sel.appendChild(o0); }
+    t.opts[group].forEach(function(o){ var op = el('option','',o[1]); op.value = o[0]; sel.appendChild(op); });
+    sel.value = keep;
+    if (group === 'contact_pref' && !sel.value) sel.value = t.opts.contact_pref[0][0];
+  });
+
+  document.querySelectorAll('.lang button').forEach(function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === l)); });
+  // Mantém ?lang= na URL. Em prévias dentro de iframe o navegador bloqueia isso, então não pode quebrar a página.
+  try { var u = new URL(location.href); u.searchParams.set('lang', l); history.replaceState(null,'',u); } catch (e) {}
+}
+
+function setErr(id, msg){
+  var f = $(id), e = $('e_' + id);
+  if (e) e.textContent = msg || '';
+  if (f) { if (msg) f.setAttribute('aria-invalid','true'); else f.removeAttribute('aria-invalid'); }
+}
+
+function validate(){
+  var t = I18N[lang], first = null;
+  REQUIRED.forEach(function(id){
+    var v = $(id).value.trim(), msg = '';
+    if (!v) msg = t.e_req;
+    else if (id === 'email' && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)) msg = t.e_email;
+    else if (id === 'phone' && v.replace(/\D/g,'').length < 7) msg = t.e_phone;
+    setErr(id, msg);
+    if (msg && !first) first = $(id);
+  });
+  var ok = $('consent').checked;
+  $('e_consent').textContent = ok ? '' : t.e_consent;
+  if (!ok && !first) first = $('consent');
+  if (first) first.focus();
+  return !first;
+}
+
+function params(){
+  var q = new URLSearchParams(location.search), o = {};
+  ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid'].forEach(function(k){ o[k] = q.get(k) || ''; });
+  return o;
+}
+
+function minMeeting(){
+  var d = new Date(Date.now() + 2 * 3600 * 1000), p = function(n){ return String(n).padStart(2,'0'); };
+  $('meeting_local').min = d.getFullYear() + '-' + p(d.getMonth()+1) + '-' + p(d.getDate()) + 'T' + p(d.getHours()) + ':' + p(d.getMinutes());
+}
+
+function showFail(){
+  var t = I18N[lang], s = $('status');
+  s.className = 'status bad'; s.textContent = '';
+  s.appendChild(document.createTextNode(t.fail));
+  var a = el('a','',FALLBACK_EMAIL); a.href = 'mailto:' + FALLBACK_EMAIL; s.appendChild(a);
+  $('submitBtn').disabled = false; $('submitBtn').textContent = t.submit;
+}
+
+function submitForm(ev){
+  ev.preventDefault();
+  if (!validate()) return;
+  var t = I18N[lang], btn = $('submitBtn');
+  btn.disabled = true; btn.textContent = t.sending; $('status').textContent = ''; $('status').className = 'status';
+  if (ENDPOINT.indexOf('PASTE_') === 0) { console.error('Defina ENDPOINT com a URL do Web App.'); showFail(); return; }
+
+  var data = new URLSearchParams(new FormData($('leadForm')));
+  data.set('consent', 'yes');
+  data.set('lang', lang);
+  data.set('tz', Intl.DateTimeFormat().resolvedOptions().timeZone || '');
+  data.set('page_url', location.origin + location.pathname);
+  data.set('referrer', document.referrer || '');
+  var p = params(); Object.keys(p).forEach(function(k){ data.set(k, p[k]); });
+
+  // no-cors: o navegador não deixa ler a resposta do Apps Script, então sucesso = o envio saiu sem erro de rede
+  fetch(ENDPOINT, { method: 'POST', mode: 'no-cors', body: data })
+    .then(function(){
+      $('leadForm').hidden = true; var d = $('done'); d.hidden = false; d.focus();
+      if (window.fbq) { try { fbq('track','Lead'); } catch(e){} }
+      if (window.gtag) { try { gtag('event','generate_lead'); } catch(e){} }
+    })
+    .catch(showFail);
+}
+
+function watchSticky(){
+  var sticky = $('sticky'), seen = {};
+  if (!('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ seen[e.target.id] = e.isIntersecting; });
+    sticky.classList.toggle('off', !!(seen.cta || seen.request));
+  });
+  io.observe($('cta')); io.observe($('request'));
+}
+
+document.querySelectorAll('.lang button').forEach(function(b){ b.addEventListener('click', function(){ applyLang(b.getAttribute('data-lang')); }); });
+$('leadForm').addEventListener('submit', submitForm);
+REQUIRED.forEach(function(id){ $(id).addEventListener('input', function(){ setErr(id,''); }); });
+$('consent').addEventListener('change', function(){ if (this.checked) $('e_consent').textContent = ''; });
+minMeeting();
+applyLang(pickLang());
+watchSticky();
+</script>
+</body>
+</html>
